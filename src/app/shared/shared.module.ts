@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import {HttpClientModule}from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SelectComponent } from './components/select/select.component'
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,13 +19,15 @@ import { SelectComponent } from './components/select/select.component'
     BrowserModule,
     HttpClientModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
 
   ],
   exports: [
     HeaderComponent,
     SpinnerComponent,
-    SelectComponent
+    SelectComponent,
+    FormsModule
   ]
 })
 export class SharedModule { }

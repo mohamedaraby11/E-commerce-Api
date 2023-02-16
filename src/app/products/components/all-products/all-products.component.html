@@ -1,7 +1,7 @@
 <div class="box pt-5">
   <app-select [data]="categories" [title]="'Categories'" (selectedValue)="filterCategory($event)"></app-select>
   <div class="row" *ngIf="!loading">
-    <div class="col-md-3 col-sm-12" *ngFor="let item of products">
+    <div class="col-md-3 col-sm-12" *ngFor="let item of products" routerLink="/detials/{{item.id}}">
       <app-product [data]="item" (item)="addToCart($event)"></app-product>
     </div>
   </div>

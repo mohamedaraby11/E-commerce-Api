@@ -64,7 +64,7 @@ export class AllProductsComponent {
   addToCart(event: any) {
     if ("cart" in localStorage) {
       this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
-      let exisit = this.cartProducts.find(item => item.id == event.id);
+      let exisit = this.cartProducts.find(item => item.item.id == event.item.id);
       if (exisit) {
         alert("Product already in your Cart")
 
