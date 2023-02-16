@@ -8,7 +8,8 @@ import { ProductsService } from '../../services/products.service';
 export class AllProductsComponent {
   products: any[] = [];
   categories: any[] = [];
-  loading:boolean=false;
+  loading: boolean = false;
+  cartProducts: any[] = [];
 
   constructor(private service: ProductsService) {
 
@@ -44,22 +45,41 @@ export class AllProductsComponent {
     })
   }
 
-  filterCategory(event:any){
+  filterCategory(event: any) {
     let value = event.target.value;
-    (value =="all") ? this.getProducts() : this.getProductsCategory(value)
+    (value == "all") ? this.getProducts() : this.getProductsCategory(value)
 
   }
 
-  getProductsCategory(keyword:string){
+  getProductsCategory(keyword: string) {
     this.loading = true;
 
-    this.service.getProductsByCategory(keyword).subscribe((res:any) => {
+    this.service.getProductsByCategory(keyword).subscribe((res: any) => {
 
       this.products = res;
       this.loading = false;
 
     })
-}
+  }
+  addToCart(event: any) {
+    if ("cart" in localStorage) {
+      this.cartProducts = JSON.parse(localStorage.getItem('cart')!);
+      let exisit = this.cartProducts.find(item => item.id == event.id);
+      if (exisit) {
+        alert("Product already in your Cart")
+
+      } else {
+        this.cartProducts.push(event);
+        localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+
+      }
+
+    } else {
+      this.cartProducts.push(event);
+      localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+
+    }
+  }
 
 
 
